@@ -1,0 +1,9 @@
+{
+  "name": "dorfmap-websockets",
+  "version": "0.0.1",
+  "description": "dorfmap-websockets",
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*"
+  }
+}
