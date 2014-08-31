@@ -8,4 +8,8 @@ io.sockets.on('connection', function (socket) {
   socket.on('toggle', function (data) {
     socket.broadcast.emit('toggle', data);
   });
+
+  socket.on('blinkencontrol', function(data) {
+    socket.broadcast.emit('blinkencontrol',data);
+  })
 });
