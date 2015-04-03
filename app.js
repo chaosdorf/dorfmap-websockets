@@ -1,15 +1,27 @@
 var app = require('express')();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var primus = new require('primus')(server, { transformer: 'engine.io' });
+primus.use('emit', require('primus-emit'));
+
+primus.save(__dirname +'/../public/js/primus.js');
 
 server.listen(3001);
 
-io.sockets.on('connection', function (socket) {
-  socket.on('toggle', function (data) {
-    socket.broadcast.emit('toggle', data);
+primus.on('connection', function (spark) {
+  spark.on('toggle', function (data) {
+    primus.forEach(function (s) {
+      if (s.id !== spark.id) {
+        s.emit('toggle', data);
+      }
+    });
   });
 
-  socket.on('blinkencontrol', function(data) {
-    socket.broadcast.emit('blinkencontrol',data);
-  })
+  spark.on('blinkencontrol', function(data) {
+    primus.forEach(function (s) {
+      if (s.id !== spark.id) {
+        s.emit('blinkencontrol', data);
+      }
+    });
+  });
 });
+

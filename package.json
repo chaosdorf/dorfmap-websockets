@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "description": "dorfmap-websockets",
   "dependencies": {
+    "engine.io": "^1.5.1",
     "express": "*",
+    "primus": "^3.0.2",
+    "primus-emit": "^0.1.2",
+    "primus-emitter": "^3.0.3",
     "socket.io": "*"
   }
 }
