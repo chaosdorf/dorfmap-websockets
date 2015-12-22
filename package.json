@@ -6,6 +6,6 @@
     "engine.io": "^1.5.1",
     "koa": "^2.0.0-alpha.3",
     "primus": "^4.0.0",
-    "primus-emit": "^0.1.2"
+    "primus-emit": "^1.0.0"
   }
 }
