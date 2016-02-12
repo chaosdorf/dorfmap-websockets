@@ -2,10 +2,14 @@
   "name": "dorfmap-websockets",
   "version": "0.0.1",
   "description": "dorfmap-websockets",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
-    "engine.io": "1.6.6",
+    "engine.io": "^1.6.8",
     "koa": "^2.0.0-alpha.3",
-    "primus": "4.0.4",
+    "primus": "^4.0.5",
     "primus-emit": "1.0.0"
   }
 }
