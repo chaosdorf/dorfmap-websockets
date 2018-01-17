@@ -4,7 +4,7 @@ var primus = new require('primus')(server, { transformer: 'uws' });
 
 primus.plugin('emit', require('primus-emit'));
 
-primus.save('./primusClient.js');
+// primus.save('./primusClient.js');
 
 server.listen(process.env.PORT || 3001);
 
