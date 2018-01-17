@@ -1,9 +1,10 @@
 var app = new (require('koa'))();
 var server = require('http').Server(app.callback());
-var primus = new require('primus')(server, { transformer: 'engine.io' });
-primus.use('emit', require('primus-emit'));
+var primus = new require('primus')(server, { transformer: 'uws' });
 
-// primus.save('./primusClient.js');
+primus.plugin('emit', require('primus-emit'));
+
+primus.save('./primusClient.js');
 
 server.listen(process.env.PORT || 3001);
 
