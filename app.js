@@ -1,18 +1,23 @@
-var app = new (require('koa'))();
-var server = require('http').Server(app.callback());
-var primus = new require('primus')(server, { transformer: 'uws' });
+const primus = new require("primus").createServer({
+  port: process.env.PORT || 3001,
+  transformer: "uws",
+  iknowhttpsisbetter: true
+});
 
-primus.plugin('emit', require('primus-emit'));
+function saveClient() {
+  const { minify } = require('uglify-js');
+  const fs = require('fs');
+  const minified = minify(primus.library());
+  fs.writeFileSync('./primusClient.js', minified.code);
+  process.exit(0);
+}
+// saveClient();
 
-// primus.save('./primusClient.js');
-
-server.listen(process.env.PORT || 3001);
-
-primus.on('connection', function (spark) {
-  spark.on('update', function (device) {
-    primus.forEach(function (s) {
+primus.on("connection", function(spark) {
+  spark.on("data", function(device) {
+    primus.forEach(function(s) {
       if (s.id !== spark.id) {
-        s.emit('update', device);
+        s.write(device);
       }
     });
   });
