@@ -3,7 +3,7 @@ from fabric.api import *
 from fabric.contrib.files import exists
 
 if not env.hosts:
-    env.hosts = ['dorfmapserver.chaosdorf.dn42']
+    env.hosts = ['dorfmapserver.chaosdorf.space']
 env.use_ssh_config = True
 
 env.shell = '/bin/sh -c'
