@@ -1,2 +1,2 @@
-FROM node:5
+FROM node:10-alpine
 EXPOSE 3001
